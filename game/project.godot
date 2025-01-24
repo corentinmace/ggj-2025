@@ -18,3 +18,8 @@ config/icon="res://icon.png"
 [dotnet]
 
 project/assembly_name="GGJ2025"
+
+[editor]
+
+version_control/plugin_name="GitPlugin"
+version_control/autoload_on_startup=true
