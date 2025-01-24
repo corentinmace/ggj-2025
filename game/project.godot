@@ -12,7 +12,8 @@ config_version=5
 
 config/name="GGJ2025"
 config/description="Enter an interesting project description here!"
-config/features=PackedStringArray("4.3")
+run/main_scene="res://entities/bubble/bubble.tscn"
+config/features=PackedStringArray("4.3", "C#")
 config/icon="res://icon.png"
 
 [dotnet]
