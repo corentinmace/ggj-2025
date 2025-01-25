@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://wqm2tpd5of4c"]
+[gd_scene load_steps=14 format=3 uid="uid://wqm2tpd5of4c"]
 
 [ext_resource type="Script" path="res://entities/bubble/Bubble.cs" id="1_gsdw6"]
 [ext_resource type="Texture2D" uid="uid://nd5o6bh7e7i5" path="res://entities/bubble/animation_idle/idle1.png" id="1_vtd0w"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://bfp3cqom6m14a" path="res://entities/bubble/animation_idle/idle6.png" id="6_sgmes"]
 [ext_resource type="Texture2D" uid="uid://bxg48nxbpot8" path="res://entities/bubble/animation_idle/idle7.png" id="7_og72k"]
 [ext_resource type="Texture2D" uid="uid://ckt2ii7p3y5a5" path="res://entities/bubble/animation_idle/idle8.png" id="8_j5l61"]
+[ext_resource type="Script" path="res://entities/bubble/PlayerControl.cs" id="10_rr8ib"]
+[ext_resource type="Script" path="res://utils/SignalDebug.cs" id="11_dlfg2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xe0it"]
 animations = [{
@@ -56,3 +58,11 @@ frame_progress = 0.339422
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_r6mdj")
+
+[node name="PlayerControl" type="Node" parent="."]
+script = ExtResource("10_rr8ib")
+
+[node name="DebugSignal" type="Node" parent="."]
+script = ExtResource("11_dlfg2")
+
+[connection signal="PlayerImpulse" from="PlayerControl" to="DebugSignal" method="PrintMessage" binds= ["PlayerControl : PlayerImpule"]]
