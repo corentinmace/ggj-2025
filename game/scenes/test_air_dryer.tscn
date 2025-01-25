@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://eebb37ttf7fu"]
+[gd_scene load_steps=7 format=3 uid="uid://eebb37ttf7fu"]
 
 [ext_resource type="PackedScene" uid="uid://nvuu5debute4" path="res://entities/hair_dryer/hair_dryer.tscn" id="1_8qhxj"]
+[ext_resource type="PackedScene" uid="uid://wqm2tpd5of4c" path="res://entities/bubble/bubble.tscn" id="2_4kxjr"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ni6p2"]
 normal = Vector2(0, 1)
@@ -39,3 +40,7 @@ shape = SubResource("WorldBoundaryShape2D_uyi2r")
 
 [node name="Left" type="CollisionShape2D" parent="WorldBounds"]
 shape = SubResource("WorldBoundaryShape2D_cb5vk")
+
+[node name="Bubble" parent="." instance=ExtResource("2_4kxjr")]
+position = Vector2(441, 489)
+collision_layer = 2

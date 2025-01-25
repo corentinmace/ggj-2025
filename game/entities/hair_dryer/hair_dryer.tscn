@@ -38,6 +38,7 @@ size = Vector2(36, 7)
 [node name="HairDryer" type="StaticBody2D"]
 collision_mask = 0
 script = ExtResource("1_ss78r")
+Strength = 10.0
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -63,7 +64,12 @@ AirFlowDistance = 64.0
 AirFlowSprite = ExtResource("2_kgf0o")
 
 [node name="EffectArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
 [node name="VariableHitbox" type="CollisionShape2D" parent="EffectArea"]
 position = Vector2(18, 49.5)
 shape = SubResource("RectangleShape2D_lw12i")
+
+[connection signal="body_entered" from="EffectArea" to="." method="OnBodyEntered"]
+[connection signal="body_exited" from="EffectArea" to="." method="OnBodyExited"]
