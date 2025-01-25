@@ -1,29 +1,28 @@
-[gd_scene load_steps=20 format=3 uid="uid://bj5m33boim8pk"]
+[gd_scene load_steps=21 format=3 uid="uid://d2odldbi18e8j"]
 
-[ext_resource type="Script" path="res://entities/droplet/Droplet.cs" id="1_f41oo"]
-[ext_resource type="Texture2D" uid="uid://cdknaown1tc8h" path="res://entities/droplet/animation_detach/droplet1.png" id="1_ota8r"]
-[ext_resource type="Texture2D" uid="uid://bl5qi2flmsu7f" path="res://entities/droplet/animation_detach/droplet2.png" id="2_7fvi7"]
-[ext_resource type="Texture2D" uid="uid://bujkurkpa45re" path="res://entities/droplet/animation_fall/droplet3.png" id="3_wu5wb"]
-[ext_resource type="Texture2D" uid="uid://dwfd51fel2mgi" path="res://entities/droplet/animation_fall/droplet4.png" id="4_tis03"]
-[ext_resource type="Texture2D" uid="uid://68b2xtjo7cgb" path="res://entities/droplet/animation_splat/droplet5.png" id="5_fxt0g"]
-[ext_resource type="Texture2D" uid="uid://d2e561w87j650" path="res://entities/droplet/animation_splat/droplet6.png" id="6_j2wpr"]
-[ext_resource type="Texture2D" uid="uid://co5dtq8xtyh7r" path="res://entities/droplet/animation_splat/droplet7.png" id="7_l7ahx"]
-[ext_resource type="Texture2D" uid="uid://586i26354b1w" path="res://entities/droplet/animation_splat/droplet8.png" id="8_b27yn"]
-[ext_resource type="Texture2D" uid="uid://c2cf3c70ql5ue" path="res://entities/droplet/animation_splat/droplet9.png" id="9_cgymp"]
-[ext_resource type="Texture2D" uid="uid://d0a88eevypqk" path="res://entities/droplet/animation_splat/droplet10.png" id="10_t74qo"]
+[ext_resource type="Script" path="res://entities/droplet/Droplet.cs" id="1_vsp6e"]
+[ext_resource type="Texture2D" uid="uid://cdknaown1tc8h" path="res://entities/droplet/animation_detach/droplet1.png" id="2_f746x"]
+[ext_resource type="Texture2D" uid="uid://bl5qi2flmsu7f" path="res://entities/droplet/animation_detach/droplet2.png" id="3_y2rno"]
+[ext_resource type="Texture2D" uid="uid://bujkurkpa45re" path="res://entities/droplet/animation_fall/droplet3.png" id="4_q6ua6"]
+[ext_resource type="Texture2D" uid="uid://dwfd51fel2mgi" path="res://entities/droplet/animation_fall/droplet4.png" id="5_rjxyf"]
+[ext_resource type="Texture2D" uid="uid://68b2xtjo7cgb" path="res://entities/droplet/animation_splat/droplet5.png" id="6_7558e"]
+[ext_resource type="Texture2D" uid="uid://d2e561w87j650" path="res://entities/droplet/animation_splat/droplet6.png" id="7_11yd3"]
+[ext_resource type="Texture2D" uid="uid://co5dtq8xtyh7r" path="res://entities/droplet/animation_splat/droplet7.png" id="8_j1lj8"]
+[ext_resource type="Texture2D" uid="uid://586i26354b1w" path="res://entities/droplet/animation_splat/droplet8.png" id="9_7md8i"]
+[ext_resource type="Texture2D" uid="uid://c2cf3c70ql5ue" path="res://entities/droplet/animation_splat/droplet9.png" id="10_p121a"]
+[ext_resource type="Texture2D" uid="uid://d0a88eevypqk" path="res://entities/droplet/animation_splat/droplet10.png" id="11_5mlld"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_42dlh"]
-radius = 10.5
-height = 34.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_vkyji"]
+radius = 1.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_isnl7"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_ota8r")
+"texture": ExtResource("2_f746x")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_7fvi7")
+"texture": ExtResource("3_y2rno")
 }],
 "loop": true,
 "name": &"detach",
@@ -31,10 +30,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_wu5wb")
+"texture": ExtResource("4_q6ua6")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_tis03")
+"texture": ExtResource("5_rjxyf")
 }],
 "loop": true,
 "name": &"fall",
@@ -42,22 +41,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_fxt0g")
+"texture": ExtResource("6_7558e")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_j2wpr")
+"texture": ExtResource("7_11yd3")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_l7ahx")
+"texture": ExtResource("8_j1lj8")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_b27yn")
+"texture": ExtResource("9_7md8i")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_cgymp")
+"texture": ExtResource("10_p121a")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_t74qo")
+"texture": ExtResource("11_5mlld")
 }],
 "loop": true,
 "name": &"splat",
@@ -213,18 +212,16 @@ _data = {
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_n66kl"]
 
-[node name="Droplet" type="RigidBody2D"]
-mass = 0.001
-sleeping = true
-lock_rotation = true
-freeze = true
-contact_monitor = true
-max_contacts_reported = 1
-script = ExtResource("1_f41oo")
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u40dr"]
+radius = 11.0
+height = 36.0
+
+[node name="Droplet" type="CharacterBody2D"]
+script = ExtResource("1_vsp6e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 0)
-shape = SubResource("CapsuleShape2D_42dlh")
+position = Vector2(0, 13)
+shape = SubResource("CircleShape2D_vkyji")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -241,4 +238,10 @@ autoplay = "detach"
 tree_root = SubResource("AnimationNodeBlendTree_n66kl")
 anim_player = NodePath("../AnimationPlayer")
 
-[connection signal="body_entered" from="." to="." method="OnCollide"]
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_u40dr")
+
+[connection signal="BodyEntered" from="." to="." method="OnCollide"]
+[connection signal="body_entered" from="Area2D" to="." method="OnCollide"]
