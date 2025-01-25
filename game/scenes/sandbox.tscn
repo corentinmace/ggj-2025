@@ -1,8 +1,40 @@
-[gd_scene load_steps=2 format=3 uid="uid://b1pvu1mfhsnx0"]
+[gd_scene load_steps=7 format=3 uid="uid://b1pvu1mfhsnx0"]
 
 [ext_resource type="PackedScene" uid="uid://wqm2tpd5of4c" path="res://entities/bubble/bubble.tscn" id="1_2wgdu"]
+[ext_resource type="PackedScene" uid="uid://yxamipqanelm" path="res://scenes/debug_ui.tscn" id="2_v3k20"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_82xop"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_h4r7o"]
+normal = Vector2(-1, 0)
+distance = -1152.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_g7beh"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ejxcj"]
+distance = -648.0
 
 [node name="Sandbox" type="Node2D"]
 
 [node name="Bubble" parent="." instance=ExtResource("1_2wgdu")]
 position = Vector2(551, 320)
+
+[node name="DebugUI" parent="." instance=ExtResource("2_v3k20")]
+
+[node name="WorldBoundaries" type="StaticBody2D" parent="."]
+
+[node name="Left" type="CollisionShape2D" parent="WorldBoundaries"]
+shape = SubResource("WorldBoundaryShape2D_82xop")
+
+[node name="Right" type="CollisionShape2D" parent="WorldBoundaries"]
+shape = SubResource("WorldBoundaryShape2D_h4r7o")
+
+[node name="Top" type="CollisionShape2D" parent="WorldBoundaries"]
+shape = SubResource("WorldBoundaryShape2D_g7beh")
+
+[node name="Bottom" type="CollisionShape2D" parent="WorldBoundaries"]
+shape = SubResource("WorldBoundaryShape2D_ejxcj")
+
+[connection signal="VelocityChanged" from="Bubble" to="DebugUI" method="OnVelocityChanged"]

@@ -54,7 +54,8 @@ script = ExtResource("1_gsdw6")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_xe0it")
 animation = &"idle"
-frame_progress = 0.339422
+autoplay = "idle"
+frame_progress = 0.661048
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_r6mdj")
@@ -65,4 +66,5 @@ script = ExtResource("10_rr8ib")
 [node name="DebugSignal" type="Node" parent="."]
 script = ExtResource("11_dlfg2")
 
+[connection signal="PlayerImpulse" from="PlayerControl" to="." method="OnPlayerImpulse"]
 [connection signal="PlayerImpulse" from="PlayerControl" to="DebugSignal" method="PrintMessage" binds= ["PlayerControl : PlayerImpule"]]
