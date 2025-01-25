@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://nvuu5debute4"]
+
+[ext_resource type="Texture2D" uid="uid://bv6advjyswfem" path="res://entities/hair_dryer/animation_default/hair_dryer1.png" id="1_akomp"]
+[ext_resource type="Script" path="res://entities/hair_dryer/HairDryer.cs" id="1_ss78r"]
+[ext_resource type="PackedScene" uid="uid://bmpok0jn3ciir" path="res://entities/hair_dryer/air_flow.tscn" id="2_kgf0o"]
+[ext_resource type="Texture2D" uid="uid://og2x0ldwgbyg" path="res://entities/hair_dryer/animation_default/hair_dryer2.png" id="2_vtvth"]
+[ext_resource type="Texture2D" uid="uid://dgd2mbj83nmyj" path="res://entities/hair_dryer/animation_default/hair_dryer3.png" id="3_cxmv2"]
+[ext_resource type="Texture2D" uid="uid://bl1jjc5q74xx7" path="res://entities/hair_dryer/animation_default/hair_dryer4.png" id="4_37w7y"]
+[ext_resource type="Script" path="res://entities/hair_dryer/AirFlowBuilder.cs" id="6_5ntoj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ywyg4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_akomp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_vtvth")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cxmv2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_37w7y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ngc3a"]
+size = Vector2(28, 8.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lw12i"]
+resource_local_to_scene = true
+size = Vector2(36, 7)
+
+[node name="HairDryer" type="StaticBody2D"]
+collision_mask = 0
+script = ExtResource("1_ss78r")
+Strength = 10.0
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(60, 64)
+rotation = -3.14159
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_ywyg4")
+autoplay = "default"
+frame_progress = 0.936549
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(56, 16.5)
+scale = Vector2(4, 4)
+shape = SubResource("RectangleShape2D_ngc3a")
+
+[node name="Ray" type="RayCast2D" parent="."]
+position = Vector2(18, 46)
+target_position = Vector2(0, 1500)
+
+[node name="AirFlowBuilder" type="Node" parent="."]
+script = ExtResource("6_5ntoj")
+AirFlowDistance = 64.0
+AirFlowSprite = ExtResource("2_kgf0o")
+
+[node name="EffectArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="VariableHitbox" type="CollisionShape2D" parent="EffectArea"]
+position = Vector2(18, 49.5)
+shape = SubResource("RectangleShape2D_lw12i")
+
+[connection signal="body_entered" from="EffectArea" to="." method="OnBodyEntered"]
+[connection signal="body_exited" from="EffectArea" to="." method="OnBodyExited"]
