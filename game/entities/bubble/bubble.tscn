@@ -1,6 +1,5 @@
-[gd_scene load_steps=12 format=3 uid="uid://wqm2tpd5of4c"]
+[gd_scene load_steps=19 format=3 uid="uid://wqm2tpd5of4c"]
 
-[ext_resource type="Script" path="res://entities/bubble/Bubble.cs" id="1_gsdw6"]
 [ext_resource type="Texture2D" uid="uid://nd5o6bh7e7i5" path="res://entities/bubble/animation_idle/idle1.png" id="1_vtd0w"]
 [ext_resource type="Texture2D" uid="uid://dyd2avx702pc7" path="res://entities/bubble/animation_idle/idle2.png" id="2_vrvas"]
 [ext_resource type="Texture2D" uid="uid://cj26ls4jiynxp" path="res://entities/bubble/animation_idle/idle3.png" id="3_r2uql"]
@@ -9,6 +8,14 @@
 [ext_resource type="Texture2D" uid="uid://bfp3cqom6m14a" path="res://entities/bubble/animation_idle/idle6.png" id="6_sgmes"]
 [ext_resource type="Texture2D" uid="uid://bxg48nxbpot8" path="res://entities/bubble/animation_idle/idle7.png" id="7_og72k"]
 [ext_resource type="Texture2D" uid="uid://ckt2ii7p3y5a5" path="res://entities/bubble/animation_idle/idle8.png" id="8_j5l61"]
+[ext_resource type="Texture2D" uid="uid://c050hag1eyb6i" path="res://entities/bubble/animation_pop/pop1.png" id="9_rl4y1"]
+[ext_resource type="Texture2D" uid="uid://blhbx072upjo6" path="res://entities/bubble/animation_pop/pop2.png" id="10_flkm6"]
+[ext_resource type="Texture2D" uid="uid://t2da5cohwxtv" path="res://entities/bubble/animation_pop/pop3.png" id="11_x32xr"]
+[ext_resource type="Texture2D" uid="uid://dxv6scdoxe7mb" path="res://entities/bubble/animation_pop/pop4.png" id="12_76hml"]
+[ext_resource type="Texture2D" uid="uid://gi1r0bpn716a" path="res://entities/bubble/animation_pop/pop5.png" id="13_pjkxr"]
+[ext_resource type="Texture2D" uid="uid://d3ot5ss3a4fb7" path="res://entities/bubble/animation_pop/pop6.png" id="14_14u6j"]
+[ext_resource type="Texture2D" uid="uid://8ds276s1dved" path="res://entities/bubble/animation_pop/pop7.png" id="15_tyvkx"]
+[ext_resource type="Texture2D" uid="uid://m0oyalkjc5p2" path="res://entities/bubble/animation_pop/pop8.png" id="16_iclmy"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xe0it"]
 animations = [{
@@ -40,19 +47,48 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_rl4y1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_flkm6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_x32xr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_76hml")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_pjkxr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_14u6j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_tyvkx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_iclmy")
+}],
+"loop": true,
+"name": &"pop",
+"speed": 9.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r6mdj"]
 radius = 16.0312
 
 [node name="Bubble" type="CharacterBody2D"]
-script = ExtResource("1_gsdw6")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_xe0it")
 animation = &"idle"
-frame_progress = 0.339422
+frame_progress = 0.830177
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_r6mdj")
+debug_color = Color(0, 0.6, 0.701961, 0.156863)
