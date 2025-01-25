@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://eebb37ttf7fu"]
+
+[ext_resource type="PackedScene" uid="uid://nvuu5debute4" path="res://entities/hair_dryer/hair_dryer.tscn" id="1_8qhxj"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ni6p2"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_nkfka"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uyi2r"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_cb5vk"]
+normal = Vector2(1, 0)
+
+[node name="TestAirDryer" type="Node2D"]
+
+[node name="HairDryer" parent="." instance=ExtResource("1_8qhxj")]
+position = Vector2(458, 647)
+rotation = 3.14159
+
+[node name="HairDryer2" parent="." instance=ExtResource("1_8qhxj")]
+position = Vector2(1151, 242)
+rotation = 1.5708
+
+[node name="WorldBounds" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="Top" type="CollisionShape2D" parent="WorldBounds"]
+shape = SubResource("WorldBoundaryShape2D_ni6p2")
+
+[node name="Bottom" type="CollisionShape2D" parent="WorldBounds"]
+position = Vector2(0, 649)
+shape = SubResource("WorldBoundaryShape2D_nkfka")
+
+[node name="Right" type="CollisionShape2D" parent="WorldBounds"]
+position = Vector2(1154, 0)
+shape = SubResource("WorldBoundaryShape2D_uyi2r")
+
+[node name="Left" type="CollisionShape2D" parent="WorldBounds"]
+shape = SubResource("WorldBoundaryShape2D_cb5vk")
