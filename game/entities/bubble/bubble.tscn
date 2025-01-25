@@ -192,6 +192,7 @@ _data = {
 graph_offset = Vector2(-166.678, 36.7107)
 
 [node name="Bubble" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_5e0xq")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
