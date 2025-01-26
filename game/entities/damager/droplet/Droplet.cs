@@ -1,8 +1,6 @@
 using Godot;
-using System;
-using GGJ2025.entities;
 
-public partial class Droplet : CharacterBody2D
+public partial class Droplet : CharacterBody2D, IDamager
 {
     private AnimatedSprite2D Sprite;
     private AnimationPlayer Animator;
@@ -42,17 +40,15 @@ public partial class Droplet : CharacterBody2D
         }
     }
 
+    public void Hit() { }
+
     public void OnCollide(Node2D body)
     {
         if (body.GetInstanceId() == GetInstanceId())
             return;
-        
+
         Enabled = false;
         Animator.Play("splat");
-        if (body is IHittable hittable)
-        {
-            hittable.Hit();
-        }
     }
 
     public void OnDetachAnimationFinished()

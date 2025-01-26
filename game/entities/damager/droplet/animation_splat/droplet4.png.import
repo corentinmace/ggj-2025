@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://68b2xtjo7cgb"
-path="res://.godot/imported/droplet5.png-08b9953a6441ab6eadd83ffaff9458e1.ctex"
+uid="uid://ddn8s8s2wgll0"
+path="res://.godot/imported/droplet4.png-5a873971449fc4eaea0f22f03e0bf2f3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/droplet/animation_splat/droplet5.png"
-dest_files=["res://.godot/imported/droplet5.png-08b9953a6441ab6eadd83ffaff9458e1.ctex"]
+source_file="res://entities/damager/droplet/animation_splat/droplet4.png"
+dest_files=["res://.godot/imported/droplet4.png-5a873971449fc4eaea0f22f03e0bf2f3.ctex"]
 
 [params]
 

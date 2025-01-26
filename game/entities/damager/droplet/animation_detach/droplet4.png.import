@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pmykecdoq8t3"
-path="res://.godot/imported/spike.png-d2861cd5bb8feb9a066d3268a22f80e0.ctex"
+uid="uid://dfyaahorneepb"
+path="res://.godot/imported/droplet4.png-9cad67b2042e5882d34c10916de319cb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/spike/spike.png"
-dest_files=["res://.godot/imported/spike.png-d2861cd5bb8feb9a066d3268a22f80e0.ctex"]
+source_file="res://entities/damager/droplet/animation_detach/droplet4.png"
+dest_files=["res://.godot/imported/droplet4.png-9cad67b2042e5882d34c10916de319cb.ctex"]
 
 [params]
 

@@ -4,6 +4,8 @@ public partial class InteractionArea : Area2D
 {
     [Signal]
     public delegate void ItemCollectedEventHandler(Item item);
+    [Signal]
+    public delegate void DamagedEventHandler();
 
     public override void _Ready()
     {
@@ -18,6 +20,11 @@ public partial class InteractionArea : Area2D
             Item item = collectible.Item;
             EmitSignal(SignalName.ItemCollected, item);
             collectible.Collect();
+        }
+        else if (body is IDamager damager)
+        {
+            EmitSignal(SignalName.Damaged);
+            damager.Hit();
         }
     }
 }

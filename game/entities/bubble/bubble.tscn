@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://wqm2tpd5of4c"]
+[gd_scene load_steps=29 format=3 uid="uid://wqm2tpd5of4c"]
 
 [ext_resource type="Script" path="res://entities/bubble/Bubble.cs" id="1_5e0xq"]
 [ext_resource type="Texture2D" uid="uid://nd5o6bh7e7i5" path="res://entities/bubble/animation_idle/idle1.png" id="1_vtd0w"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://m0oyalkjc5p2" path="res://entities/bubble/animation_pop/pop8.png" id="16_iclmy"]
 [ext_resource type="Script" path="res://entities/bubble/PlayerControl.cs" id="18_a8an0"]
 [ext_resource type="Script" path="res://entities/bubble/InteractionArea.cs" id="19_7xfup"]
+[ext_resource type="Script" path="res://entities/bubble/LifeControl.cs" id="20_yq5xt"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xe0it"]
 animations = [{
@@ -82,7 +83,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r6mdj"]
-radius = 16.0312
+radius = 14.0
 
 [sub_resource type="Animation" id="Animation_n5l77"]
 length = 0.001
@@ -192,6 +193,9 @@ _data = {
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_377ew"]
 graph_offset = Vector2(-166.678, 36.7107)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_glnt5"]
+radius = 16.0
+
 [node name="Bubble" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_5e0xq")
@@ -221,11 +225,16 @@ tree_root = SubResource("AnimationNodeBlendTree_377ew")
 
 [node name="InteractionArea" type="Area2D" parent="."]
 collision_layer = 2
-collision_mask = 4
+collision_mask = 12
 script = ExtResource("19_7xfup")
 
 [node name="Hitbox" type="CollisionShape2D" parent="InteractionArea"]
-shape = SubResource("CircleShape2D_r6mdj")
+shape = SubResource("CircleShape2D_glnt5")
+
+[node name="LifeControl" type="Node" parent="."]
+script = ExtResource("20_yq5xt")
 
 [connection signal="PlayerImpulse" from="PlayerControl" to="." method="OnPlayerImpulse"]
 [connection signal="timeout" from="PlayerControl/ImpulseCooldown" to="PlayerControl" method="OnImpluseCouldownTimeout"]
+[connection signal="Damaged" from="InteractionArea" to="LifeControl" method="OnDamaged"]
+[connection signal="Killed" from="LifeControl" to="." method="Hit"]
