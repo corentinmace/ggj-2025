@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://b1pvu1mfhsnx0"]
+[gd_scene load_steps=12 format=3 uid="uid://b1pvu1mfhsnx0"]
 
 [ext_resource type="PackedScene" uid="uid://wqm2tpd5of4c" path="res://entities/bubble/bubble.tscn" id="1_2wgdu"]
+[ext_resource type="PackedScene" uid="uid://vrsoih7g31qw" path="res://ui/player_ui.tscn" id="1_rq7wj"]
 [ext_resource type="PackedScene" uid="uid://yxamipqanelm" path="res://scenes/debug_ui.tscn" id="2_v3k20"]
 [ext_resource type="PackedScene" uid="uid://c2e00tb5hahlg" path="res://entities/spike/spike.tscn" id="3_t72h2"]
 [ext_resource type="PackedScene" uid="uid://nvuu5debute4" path="res://entities/hair_dryer/hair_dryer.tscn" id="4_8my1g"]
@@ -21,14 +22,21 @@ normal = Vector2(0, 1)
 distance = -648.0
 
 [node name="Sandbox" type="Node2D"]
+texture_filter = 1
+
+[node name="PlayerUI" parent="." instance=ExtResource("1_rq7wj")]
+anchors_preset = 15
 
 [node name="Bubble" parent="." instance=ExtResource("1_2wgdu")]
 position = Vector2(551, 320)
 VelocityThresh = 0.5
 
 [node name="DebugUI" parent="." instance=ExtResource("2_v3k20")]
+visible = false
 
 [node name="WorldBoundaries" type="StaticBody2D" parent="."]
+collision_layer = 3
+collision_mask = 3
 
 [node name="Left" type="CollisionShape2D" parent="WorldBoundaries"]
 shape = SubResource("WorldBoundaryShape2D_82xop")
@@ -61,20 +69,20 @@ DropletScene = ExtResource("5_iygd5")
 
 [node name="Tap1" parent="." instance=ExtResource("5_6p70w")]
 position = Vector2(479, 15)
-SpawnDelay = 1.5
 SpawnInterval = 2.5
+SpawnDelay = 1.5
 DropletScene = ExtResource("5_iygd5")
 
 [node name="Tap3" parent="." instance=ExtResource("5_6p70w")]
 position = Vector2(717, 15)
-SpawnDelay = 2.0
 SpawnInterval = 1.5
+SpawnDelay = 2.0
 DropletScene = ExtResource("5_iygd5")
 
 [node name="Tap4" parent="." instance=ExtResource("5_6p70w")]
 position = Vector2(954, 15)
-SpawnDelay = 3.5
 SpawnInterval = 1.0
+SpawnDelay = 3.5
 DropletScene = ExtResource("5_iygd5")
 
 [connection signal="VelocityChanged" from="Bubble" to="DebugUI" method="OnVelocityChanged"]
