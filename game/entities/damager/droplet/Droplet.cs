@@ -40,7 +40,10 @@ public partial class Droplet : CharacterBody2D, IDamager
         }
     }
 
-    public void Hit() { }
+    public void Hit(Node2D node)
+    {
+        EmitSignal(SignalName.BodyEntered, node);
+    }
 
     public void OnCollide(Node2D body)
     {

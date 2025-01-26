@@ -24,7 +24,7 @@ public partial class InteractionArea : Area2D
         else if (body is IDamager damager)
         {
             EmitSignal(SignalName.Damaged);
-            damager.Hit();
+            damager.Hit(this);
         }
     }
 }
