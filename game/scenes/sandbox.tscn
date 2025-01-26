@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://b1pvu1mfhsnx0"]
+[gd_scene load_steps=11 format=3 uid="uid://b1pvu1mfhsnx0"]
 
 [ext_resource type="PackedScene" uid="uid://wqm2tpd5of4c" path="res://entities/bubble/bubble.tscn" id="1_2wgdu"]
 [ext_resource type="PackedScene" uid="uid://yxamipqanelm" path="res://scenes/debug_ui.tscn" id="2_v3k20"]
 [ext_resource type="PackedScene" uid="uid://c2e00tb5hahlg" path="res://entities/spike/spike.tscn" id="3_t72h2"]
 [ext_resource type="PackedScene" uid="uid://nvuu5debute4" path="res://entities/hair_dryer/hair_dryer.tscn" id="4_8my1g"]
+[ext_resource type="PackedScene" uid="uid://45ys6bjlrl3m" path="res://entities/tap/tap.tscn" id="5_6p70w"]
+[ext_resource type="PackedScene" uid="uid://d2odldbi18e8j" path="res://entities/droplet/droplet.tscn" id="5_iygd5"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_82xop"]
 normal = Vector2(1, 0)
@@ -51,5 +53,28 @@ scale = Vector2(1, -1)
 [node name="HairDryer2" parent="." instance=ExtResource("4_8my1g")]
 position = Vector2(1150, 101)
 rotation = 1.5708
+
+[node name="Tap" parent="." instance=ExtResource("5_6p70w")]
+position = Vector2(239, 15)
+SpawnDelay = 0.0
+DropletScene = ExtResource("5_iygd5")
+
+[node name="Tap1" parent="." instance=ExtResource("5_6p70w")]
+position = Vector2(479, 15)
+SpawnDelay = 1.5
+SpawnInterval = 2.5
+DropletScene = ExtResource("5_iygd5")
+
+[node name="Tap3" parent="." instance=ExtResource("5_6p70w")]
+position = Vector2(717, 15)
+SpawnDelay = 2.0
+SpawnInterval = 1.5
+DropletScene = ExtResource("5_iygd5")
+
+[node name="Tap4" parent="." instance=ExtResource("5_6p70w")]
+position = Vector2(954, 15)
+SpawnDelay = 3.5
+SpawnInterval = 1.0
+DropletScene = ExtResource("5_iygd5")
 
 [connection signal="VelocityChanged" from="Bubble" to="DebugUI" method="OnVelocityChanged"]
