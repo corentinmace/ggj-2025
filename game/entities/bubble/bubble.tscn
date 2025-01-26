@@ -209,11 +209,6 @@ autoplay = "idle"
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_r6mdj")
 
-[node name="PlayerControl" type="Node" parent="."]
-script = ExtResource("18_a8an0")
-
-[node name="ImpulseCooldown" type="Timer" parent="PlayerControl"]
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_iwoso")
@@ -231,10 +226,20 @@ script = ExtResource("19_7xfup")
 [node name="Hitbox" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource("CircleShape2D_glnt5")
 
+[node name="PlayerControl" type="Node" parent="."]
+script = ExtResource("18_a8an0")
+
+[node name="ImpulseCooldown" type="Timer" parent="PlayerControl"]
+
 [node name="LifeControl" type="Node" parent="."]
 script = ExtResource("20_yq5xt")
 
+[node name="HitCooldown" type="Timer" parent="LifeControl"]
+wait_time = 0.5
+
+[connection signal="Damaged" from="InteractionArea" to="LifeControl" method="OnDamaged"]
+[connection signal="ItemCollected" from="InteractionArea" to="LifeControl" method="OnItemCollected"]
 [connection signal="PlayerImpulse" from="PlayerControl" to="." method="OnPlayerImpulse"]
 [connection signal="timeout" from="PlayerControl/ImpulseCooldown" to="PlayerControl" method="OnImpluseCouldownTimeout"]
-[connection signal="Damaged" from="InteractionArea" to="LifeControl" method="OnDamaged"]
 [connection signal="Killed" from="LifeControl" to="." method="Hit"]
+[connection signal="timeout" from="LifeControl/HitCooldown" to="LifeControl" method="OnHitCooldownTimeout"]

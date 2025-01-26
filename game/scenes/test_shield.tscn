@@ -46,7 +46,7 @@ shape = SubResource("WorldBoundaryShape2D_8lphn")
 shape = SubResource("WorldBoundaryShape2D_5duq5")
 
 [node name="Spike" parent="." instance=ExtResource("4_evaq0")]
-position = Vector2(1136, 146)
+position = Vector2(1136, 184)
 
 [node name="Tap" parent="." instance=ExtResource("5_10wph")]
 position = Vector2(109, 32)
