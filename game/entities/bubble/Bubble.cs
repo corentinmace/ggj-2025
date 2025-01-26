@@ -1,7 +1,6 @@
 using Godot;
-using GGJ2025.entities;
 
-public partial class Bubble : CharacterBody2D, IHittable
+public partial class Bubble : CharacterBody2D
 {
     [Export] private float Speed { get; set; } = 300.0f;
     [Export] public float Friction { get; set; } = 100.0f;

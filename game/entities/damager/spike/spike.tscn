@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2e00tb5hahlg"]
+
+[ext_resource type="Texture2D" uid="uid://pmykecdoq8t3" path="res://entities/damager/spike/spike.png" id="1_2rdi6"]
+[ext_resource type="Script" path="res://entities/damager/spike/Spike.cs" id="1_6gojh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nq8y5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2rdi6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wcx8x"]
+size = Vector2(33, 34)
+
+[node name="Spike" type="StaticBody2D"]
+collision_layer = 9
+collision_mask = 0
+script = ExtResource("1_6gojh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_nq8y5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_wcx8x")

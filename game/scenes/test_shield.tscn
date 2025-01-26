@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=3 uid="uid://bjekwqu5hv4w1"]
+
+[ext_resource type="PackedScene" uid="uid://bcicu5llabxa1" path="res://entities/collectibles/shield/shield_item.tscn" id="1_hijew"]
+[ext_resource type="PackedScene" uid="uid://wqm2tpd5of4c" path="res://entities/bubble/bubble.tscn" id="2_vrgqm"]
+[ext_resource type="PackedScene" uid="uid://c2e00tb5hahlg" path="res://entities/damager/spike/spike.tscn" id="4_evaq0"]
+[ext_resource type="PackedScene" uid="uid://45ys6bjlrl3m" path="res://entities/tap/tap.tscn" id="5_10wph"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gvhs2"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_krd00"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8lphn"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5duq5"]
+normal = Vector2(1, 0)
+
+[node name="TestShield" type="Node2D"]
+
+[node name="ShieldItem" parent="." instance=ExtResource("1_hijew")]
+position = Vector2(546, 189)
+
+[node name="Bubble" parent="." instance=ExtResource("2_vrgqm")]
+position = Vector2(292, 193)
+
+[node name="WorldBounds" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="Top" type="CollisionShape2D" parent="WorldBounds"]
+shape = SubResource("WorldBoundaryShape2D_gvhs2")
+
+[node name="Bottom" type="CollisionShape2D" parent="WorldBounds"]
+position = Vector2(0, 649)
+shape = SubResource("WorldBoundaryShape2D_krd00")
+
+[node name="Right" type="CollisionShape2D" parent="WorldBounds"]
+position = Vector2(1154, 0)
+shape = SubResource("WorldBoundaryShape2D_8lphn")
+
+[node name="Left" type="CollisionShape2D" parent="WorldBounds"]
+shape = SubResource("WorldBoundaryShape2D_5duq5")
+
+[node name="Spike" parent="." instance=ExtResource("4_evaq0")]
+position = Vector2(1136, 184)
+
+[node name="Tap" parent="." instance=ExtResource("5_10wph")]
+position = Vector2(109, 32)
+SpawnInterval = 1.0
+SpawnDelay = 0.0

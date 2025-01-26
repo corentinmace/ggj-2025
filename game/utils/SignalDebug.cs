@@ -3,8 +3,8 @@ using System;
 
 public partial class SignalDebug : Node
 {
-    public void PrintMessage(Vector2 direction, float strength, string message)
+    public void PrintMessage()
     {
-        GD.Print($"{message}: {direction}, {strength}");
+        GD.Print("Signal triggered");
     }
 }
