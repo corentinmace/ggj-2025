@@ -14,9 +14,9 @@ public partial class StyleManager : Node
         }
     }
 
-    public void OnJumpCooldownChanged(bool state)
+    public void OnCanImpulseChanged(bool canImpulse)
     {
-        if (state)
+        if (!canImpulse)
             sprite.Material = JumpCooldownShader;
         else if (sprite.Material?.GetInstanceId() == JumpCooldownShader.GetInstanceId())
             sprite.Material = null;
