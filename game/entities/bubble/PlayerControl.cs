@@ -15,6 +15,9 @@ public partial class PlayerControl : Node
 
     [Signal]
     public delegate void PlayerImpulseEventHandler(Vector2 direction, float strength);
+    
+    [Signal]
+    public delegate void JumpCooldownChangedEventHandler(bool state);
 
     public Timer CooldownTimer { get; private set; }
 
@@ -45,13 +48,15 @@ public partial class PlayerControl : Node
             impulseDuration = 0.0f;
             canImpulse = false;
             CooldownTimer.Start();
-
+            
+            EmitSignal(SignalName.JumpCooldownChanged, true);
             EmitSignal(SignalName.PlayerImpulse, direction, strength);
         }
     }
 
     public void OnImpluseCouldownTimeout()
     {
+        EmitSignal(SignalName.JumpCooldownChanged, false);
         canImpulse = true;
     }
 

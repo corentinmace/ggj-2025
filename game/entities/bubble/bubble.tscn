@@ -1,5 +1,6 @@
-[gd_scene load_steps=26 format=3 uid="uid://wqm2tpd5of4c"]
+[gd_scene load_steps=29 format=3 uid="uid://wqm2tpd5of4c"]
 
+[ext_resource type="Shader" path="res://entities/bubble/ReloadingJump.gdshader" id="1_2ia0p"]
 [ext_resource type="Script" path="res://entities/bubble/Bubble.cs" id="1_5e0xq"]
 [ext_resource type="Texture2D" uid="uid://nd5o6bh7e7i5" path="res://entities/bubble/animation_idle/idle1.png" id="1_vtd0w"]
 [ext_resource type="Texture2D" uid="uid://dyd2avx702pc7" path="res://entities/bubble/animation_idle/idle2.png" id="2_vrvas"]
@@ -18,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://8ds276s1dved" path="res://entities/bubble/animation_pop/pop7.png" id="15_tyvkx"]
 [ext_resource type="Texture2D" uid="uid://m0oyalkjc5p2" path="res://entities/bubble/animation_pop/pop8.png" id="16_iclmy"]
 [ext_resource type="Script" path="res://entities/bubble/PlayerControl.cs" id="18_a8an0"]
+[ext_resource type="Script" path="res://entities/bubble/StyleManager.cs" id="20_1e46g"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xe0it"]
 animations = [{
@@ -191,6 +193,9 @@ _data = {
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_377ew"]
 graph_offset = Vector2(-166.678, 36.7107)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sepg8"]
+shader = ExtResource("1_2ia0p")
+
 [node name="Bubble" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_5e0xq")
@@ -218,5 +223,10 @@ autoplay = "idle"
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_377ew")
 
+[node name="StyleManager" type="Node" parent="."]
+script = ExtResource("20_1e46g")
+JumpCooldownShader = SubResource("ShaderMaterial_sepg8")
+
+[connection signal="JumpCooldownChanged" from="PlayerControl" to="StyleManager" method="OnJumpCooldownChanged"]
 [connection signal="PlayerImpulse" from="PlayerControl" to="." method="OnPlayerImpulse"]
 [connection signal="timeout" from="PlayerControl/ImpulseCooldown" to="PlayerControl" method="OnImpluseCouldownTimeout"]
