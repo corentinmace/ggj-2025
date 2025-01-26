@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://bjekwqu5hv4w1"]
+[gd_scene load_steps=9 format=3 uid="uid://bjekwqu5hv4w1"]
 
 [ext_resource type="PackedScene" uid="uid://bcicu5llabxa1" path="res://entities/collectibles/shield/shield_item.tscn" id="1_hijew"]
 [ext_resource type="PackedScene" uid="uid://wqm2tpd5of4c" path="res://entities/bubble/bubble.tscn" id="2_vrgqm"]
-[ext_resource type="Script" path="res://utils/SignalDebug.cs" id="3_o8c5m"]
 [ext_resource type="PackedScene" uid="uid://c2e00tb5hahlg" path="res://entities/damager/spike/spike.tscn" id="4_evaq0"]
 [ext_resource type="PackedScene" uid="uid://45ys6bjlrl3m" path="res://entities/tap/tap.tscn" id="5_10wph"]
 
@@ -24,9 +23,6 @@ position = Vector2(546, 189)
 
 [node name="Bubble" parent="." instance=ExtResource("2_vrgqm")]
 position = Vector2(292, 193)
-
-[node name="SignalDebug" type="Node" parent="."]
-script = ExtResource("3_o8c5m")
 
 [node name="WorldBounds" type="StaticBody2D" parent="."]
 collision_mask = 0
@@ -52,5 +48,3 @@ position = Vector2(1136, 184)
 position = Vector2(109, 32)
 SpawnInterval = 1.0
 SpawnDelay = 0.0
-
-[connection signal="Collected" from="ShieldItem" to="SignalDebug" method="PrintMessage"]

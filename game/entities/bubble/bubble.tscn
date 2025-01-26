@@ -1,7 +1,9 @@
-[gd_scene load_steps=29 format=3 uid="uid://wqm2tpd5of4c"]
+[gd_scene load_steps=34 format=3 uid="uid://wqm2tpd5of4c"]
 
 [ext_resource type="Script" path="res://entities/bubble/Bubble.cs" id="1_5e0xq"]
 [ext_resource type="Texture2D" uid="uid://nd5o6bh7e7i5" path="res://entities/bubble/animation_idle/idle1.png" id="1_vtd0w"]
+[ext_resource type="Shader" path="res://entities/bubble/shielded.gdshader" id="2_njfl0"]
+[ext_resource type="Shader" path="res://entities/bubble/invincible.gdshader" id="2_u4t7d"]
 [ext_resource type="Texture2D" uid="uid://dyd2avx702pc7" path="res://entities/bubble/animation_idle/idle2.png" id="2_vrvas"]
 [ext_resource type="Texture2D" uid="uid://cj26ls4jiynxp" path="res://entities/bubble/animation_idle/idle3.png" id="3_r2uql"]
 [ext_resource type="Texture2D" uid="uid://lno28140b6y" path="res://entities/bubble/animation_idle/idle4.png" id="4_2aiu2"]
@@ -20,6 +22,7 @@
 [ext_resource type="Script" path="res://entities/bubble/PlayerControl.cs" id="18_a8an0"]
 [ext_resource type="Script" path="res://entities/bubble/InteractionArea.cs" id="19_7xfup"]
 [ext_resource type="Script" path="res://entities/bubble/LifeControl.cs" id="20_yq5xt"]
+[ext_resource type="Script" path="res://entities/bubble/StyleManager.cs" id="21_iohmd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xe0it"]
 animations = [{
@@ -191,10 +194,15 @@ _data = {
 }
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_377ew"]
-graph_offset = Vector2(-166.678, 36.7107)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_glnt5"]
 radius = 16.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_67lv2"]
+shader = ExtResource("2_njfl0")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yme1r"]
+shader = ExtResource("2_u4t7d")
 
 [node name="Bubble" type="CharacterBody2D"]
 collision_layer = 2
@@ -237,9 +245,16 @@ script = ExtResource("20_yq5xt")
 [node name="HitCooldown" type="Timer" parent="LifeControl"]
 wait_time = 0.5
 
+[node name="StyleControl" type="Node" parent="."]
+script = ExtResource("21_iohmd")
+ShieldedShader = SubResource("ShaderMaterial_67lv2")
+InvincibleShader = SubResource("ShaderMaterial_yme1r")
+
 [connection signal="Damaged" from="InteractionArea" to="LifeControl" method="OnDamaged"]
 [connection signal="ItemCollected" from="InteractionArea" to="LifeControl" method="OnItemCollected"]
 [connection signal="PlayerImpulse" from="PlayerControl" to="." method="OnPlayerImpulse"]
 [connection signal="timeout" from="PlayerControl/ImpulseCooldown" to="PlayerControl" method="OnImpluseCouldownTimeout"]
+[connection signal="IsInvincibleChanged" from="LifeControl" to="StyleControl" method="OnInvincibleChanged"]
 [connection signal="Killed" from="LifeControl" to="." method="Hit"]
+[connection signal="ShieldChanged" from="LifeControl" to="StyleControl" method="OnShieldChanged"]
 [connection signal="timeout" from="LifeControl/HitCooldown" to="LifeControl" method="OnHitCooldownTimeout"]

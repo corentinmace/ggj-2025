@@ -6,15 +6,8 @@ public partial class LifeControl : Node
     public delegate void KilledEventHandler();
     [Signal]
     public delegate void IsInvincibleChangedEventHandler(bool isInvincible);
-
-    public override void _Ready()
-    {
-        foreach (Node node in GetChildren())
-        {
-            if (node is Timer timer)
-                damageCooldown = timer;
-        }
-    }
+    [Signal]
+    public delegate void ShieldChangedEventHandler(uint shield);
 
     public bool IsInvincible
     {
@@ -29,13 +22,36 @@ public partial class LifeControl : Node
             EmitSignal(SignalName.IsInvincibleChanged, isInvincible);
         }
     }
+    public uint Shield
+    {
+        get
+        {
+            return shield;
+        }
+
+        set
+        {
+            shield = value;
+            EmitSignal(SignalName.ShieldChanged, shield);
+        }
+    }
+
+    public override void _Ready()
+    {
+        foreach (Node node in GetChildren())
+        {
+            if (node is Timer timer)
+                damageCooldown = timer;
+        }
+    }
+
 
     public void OnItemCollected(Item item)
     {
         if (item.Type != "Shield")
             return;
 
-        shield += 1;
+        Shield += 1;
     }
 
     public void OnDamaged()
@@ -46,9 +62,9 @@ public partial class LifeControl : Node
         IsInvincible = true;
         damageCooldown.Start();
 
-        if (shield != 0)
+        if (Shield != 0)
         {
-            shield -= 1;
+            Shield -= 1;
             return;
         }
 
