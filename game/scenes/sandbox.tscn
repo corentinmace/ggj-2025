@@ -61,20 +61,20 @@ DropletScene = ExtResource("5_iygd5")
 
 [node name="Tap1" parent="." instance=ExtResource("5_6p70w")]
 position = Vector2(479, 15)
-SpawnDelay = 1.5
 SpawnInterval = 2.5
+SpawnDelay = 1.5
 DropletScene = ExtResource("5_iygd5")
 
 [node name="Tap3" parent="." instance=ExtResource("5_6p70w")]
 position = Vector2(717, 15)
-SpawnDelay = 2.0
 SpawnInterval = 1.5
+SpawnDelay = 2.0
 DropletScene = ExtResource("5_iygd5")
 
 [node name="Tap4" parent="." instance=ExtResource("5_6p70w")]
 position = Vector2(954, 15)
-SpawnDelay = 3.5
 SpawnInterval = 1.0
+SpawnDelay = 3.5
 DropletScene = ExtResource("5_iygd5")
 
 [connection signal="VelocityChanged" from="Bubble" to="DebugUI" method="OnVelocityChanged"]
