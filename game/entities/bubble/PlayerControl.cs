@@ -1,12 +1,7 @@
 using Godot;
-using System;
 
 public partial class PlayerControl : Node
 {
-    [Export] public float ThreshTime { get; set; } = 0.5f;
-
-    private float _impulseDuration = 0.0f;
-
     public struct Inputs
     {
         public const string Left = "left_dir";
@@ -16,23 +11,50 @@ public partial class PlayerControl : Node
         public const string Impulse = "impulse";
     }
 
+    [Export] public float ThreshTime { get; set; } = 0.5f;
+
     [Signal]
     public delegate void PlayerImpulseEventHandler(Vector2 direction, float strength);
 
+    public Timer CooldownTimer { get; private set; }
+
+    public override void _Ready()
+    {
+        foreach (Node child in GetChildren())
+        {
+            if (child is Timer timer)
+                CooldownTimer = timer;
+        }
+    }
+
     public override void _PhysicsProcess(double delta)
     {
-        Vector2 direction = Input.GetVector(Inputs.Left, Inputs.Right, Inputs.Up, Inputs.Down);
+        if (!canImpulse)
+            return;
 
         if (Input.IsActionPressed(Inputs.Impulse))
         {
-            _impulseDuration += (float)delta;
+            impulseDuration += (float)delta;
+            return;
         }
-        else if (!direction.IsZeroApprox() && Input.IsActionJustReleased(Inputs.Impulse))
+
+        Vector2 direction = Input.GetVector(Inputs.Left, Inputs.Right, Inputs.Up, Inputs.Down);
+        if (!direction.IsZeroApprox() && Input.IsActionJustReleased(Inputs.Impulse))
         {
-            float strength = _impulseDuration > ThreshTime ? 1.0f : _impulseDuration / ThreshTime;
-            _impulseDuration = 0.0f;
-            
+            float strength = impulseDuration > ThreshTime ? 1.0f : impulseDuration / ThreshTime;
+            impulseDuration = 0.0f;
+            canImpulse = false;
+            CooldownTimer.Start();
+
             EmitSignal(SignalName.PlayerImpulse, direction, strength);
         }
     }
+
+    public void OnImpluseCouldownTimeout()
+    {
+        canImpulse = true;
+    }
+
+    private float impulseDuration = 0.0f;
+    private bool canImpulse = true;
 }
