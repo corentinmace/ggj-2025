@@ -47,6 +47,7 @@ public partial class Tap : StaticBody2D
 	{
 		Node2D newDroplet = DropletScene.Instantiate<Node2D>();
 		newDroplet.Position = SpawnPosition.Position;
+		newDroplet.ZIndex = -1;
 		AddChild(newDroplet);
 		
 	}

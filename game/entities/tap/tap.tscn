@@ -1,14 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://45ys6bjlrl3m"]
+[gd_scene load_steps=4 format=3 uid="uid://45ys6bjlrl3m"]
 
 [ext_resource type="Script" path="res://entities/tap/Tap.cs" id="1_4goj2"]
+[ext_resource type="Texture2D" uid="uid://bvn5wbgo118ef" path="res://entities/tap/pipe_leaking.png" id="2_jsoxm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8lfr5"]
+size = Vector2(144, 42)
 
 [node name="Tap" type="StaticBody2D"]
 script = ExtResource("1_4goj2")
 SpawnDelay = 10.0
 
+[node name="PipeLeaking" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(6, -26)
+scale = Vector2(3, 3)
+texture = ExtResource("2_jsoxm")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(6, -11)
 shape = SubResource("RectangleShape2D_8lfr5")
 
 [node name="SpawnPosition" type="Marker2D" parent="."]
