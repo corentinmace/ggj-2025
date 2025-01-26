@@ -2,27 +2,26 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nd5o6bh7e7i5"
-path.s3tc="res://.godot/imported/idle1.png-aff2e59cc77604baa9e4c209f0994531.s3tc.ctex"
+uid="uid://bex0esj5cpfh2"
+path="res://.godot/imported/pop9.png-a2c16719387ca81c1caa008a9ccf285d.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/bubble/animation_idle/idle1.png"
-dest_files=["res://.godot/imported/idle1.png-aff2e59cc77604baa9e4c209f0994531.s3tc.ctex"]
+source_file="res://entities/bubble/animation_pop/pop9.png"
+dest_files=["res://.godot/imported/pop9.png-a2c16719387ca81c1caa008a9ccf285d.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -32,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

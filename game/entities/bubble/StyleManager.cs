@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class StyleManager : Node
 {
@@ -7,12 +6,15 @@ public partial class StyleManager : Node
     {
         public const byte Shield = (1 << 0);
         public const byte Invincible = (1 << 1);
+        public const byte JumpCooldown = (1 << 2);
     }
 
     [Export]
     public ShaderMaterial ShieldedShader { get; set; }
     [Export]
     public ShaderMaterial InvincibleShader { get; set; }
+    [Export]
+    public ShaderMaterial JumpCooldownShader { get; set; }
 
     public bool ShieldShaderEnabled
     {
@@ -44,6 +46,21 @@ public partial class StyleManager : Node
         }
     }
 
+    public bool JumpCooldownShaderEnabled
+    {
+        get
+        {
+            return (shaderMask & ShaderMasks.JumpCooldown) != 0;
+        }
+        set
+        {
+            if (value)
+                shaderMask |= ShaderMasks.JumpCooldown;
+            else
+                shaderMask &= unchecked((byte)(~ShaderMasks.JumpCooldown));
+        }
+    }
+
     public override void _Ready()
     {
         foreach (Node node in GetParent().GetChildren())
@@ -65,15 +82,24 @@ public partial class StyleManager : Node
         UpdateShaders();
     }
 
+    public void OnCanImpulseChanged(bool canImpulse)
+    {
+        JumpCooldownShaderEnabled = !canImpulse;
+        UpdateShaders();
+    }
+
     private void UpdateShaders()
     {
-        if (InvincibleShaderEnabled)
+        if (JumpCooldownShaderEnabled)
+            sprite.Material = JumpCooldownShader;
+        else if (InvincibleShaderEnabled)
             sprite.Material = InvincibleShader;
         else if (ShieldShaderEnabled)
             sprite.Material = ShieldedShader;
         else
             sprite.Material = null;
     }
+
 
     private AnimatedSprite2D sprite;
     private byte shaderMask = 0;

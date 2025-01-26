@@ -1,5 +1,6 @@
-[gd_scene load_steps=34 format=3 uid="uid://wqm2tpd5of4c"]
+[gd_scene load_steps=38 format=3 uid="uid://wqm2tpd5of4c"]
 
+[ext_resource type="Shader" path="res://entities/bubble/ReloadingJump.gdshader" id="1_2ia0p"]
 [ext_resource type="Script" path="res://entities/bubble/Bubble.cs" id="1_5e0xq"]
 [ext_resource type="Texture2D" uid="uid://nd5o6bh7e7i5" path="res://entities/bubble/animation_idle/idle1.png" id="1_vtd0w"]
 [ext_resource type="Shader" path="res://entities/bubble/shielded.gdshader" id="2_njfl0"]
@@ -20,9 +21,11 @@
 [ext_resource type="Texture2D" uid="uid://8ds276s1dved" path="res://entities/bubble/animation_pop/pop7.png" id="15_tyvkx"]
 [ext_resource type="Texture2D" uid="uid://m0oyalkjc5p2" path="res://entities/bubble/animation_pop/pop8.png" id="16_iclmy"]
 [ext_resource type="Script" path="res://entities/bubble/PlayerControl.cs" id="18_a8an0"]
+[ext_resource type="Texture2D" uid="uid://bex0esj5cpfh2" path="res://entities/bubble/animation_pop/pop9.png" id="18_llg5a"]
 [ext_resource type="Script" path="res://entities/bubble/InteractionArea.cs" id="19_7xfup"]
+[ext_resource type="AudioStream" uid="uid://c5hvwwvdciydc" path="res://entities/bubble/sfx/pop.ogg" id="19_ja504"]
+[ext_resource type="Script" path="res://entities/bubble/StyleManager.cs" id="20_1e46g"]
 [ext_resource type="Script" path="res://entities/bubble/LifeControl.cs" id="20_yq5xt"]
-[ext_resource type="Script" path="res://entities/bubble/StyleManager.cs" id="21_iohmd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xe0it"]
 animations = [{
@@ -79,6 +82,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("16_iclmy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_llg5a")
 }],
 "loop": true,
 "name": &"pop",
@@ -114,6 +120,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [&"pop"]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_vedo2"]
 resource_name = "idle"
@@ -146,7 +164,6 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_f337b"]
 resource_name = "pop"
-length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -154,10 +171,10 @@ tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.966667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7]
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 8]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -166,7 +183,7 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.366667),
+"times": PackedFloat32Array(0.966667),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -180,10 +197,37 @@ tracks/2/path = NodePath("Sprite:animation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [&"pop"]
+"values": [&"pop", &"pop"]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.337619,
+"start_offset": 0.0,
+"stream": ExtResource("19_ja504")
+}],
+"times": PackedFloat32Array(0.0333333)
+}
+tracks/3/use_blend = true
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.433333, 0.966667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iwoso"]
@@ -198,11 +242,14 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_glnt5"]
 radius = 16.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_67lv2"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r7jjw"]
 shader = ExtResource("2_njfl0")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_yme1r"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2rx0u"]
 shader = ExtResource("2_u4t7d")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_obd24"]
+shader = ExtResource("1_2ia0p")
 
 [node name="Bubble" type="CharacterBody2D"]
 collision_layer = 2
@@ -245,16 +292,21 @@ script = ExtResource("20_yq5xt")
 [node name="HitCooldown" type="Timer" parent="LifeControl"]
 wait_time = 0.5
 
-[node name="StyleControl" type="Node" parent="."]
-script = ExtResource("21_iohmd")
-ShieldedShader = SubResource("ShaderMaterial_67lv2")
-InvincibleShader = SubResource("ShaderMaterial_yme1r")
+[node name="StyleManager" type="Node" parent="."]
+script = ExtResource("20_1e46g")
+ShieldedShader = SubResource("ShaderMaterial_r7jjw")
+InvincibleShader = SubResource("ShaderMaterial_2rx0u")
+JumpCooldownShader = SubResource("ShaderMaterial_obd24")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
 [connection signal="Damaged" from="InteractionArea" to="LifeControl" method="OnDamaged"]
 [connection signal="ItemCollected" from="InteractionArea" to="LifeControl" method="OnItemCollected"]
+[connection signal="CanImpulseChanged" from="PlayerControl" to="StyleManager" method="OnCanImpulseChanged"]
 [connection signal="PlayerImpulse" from="PlayerControl" to="." method="OnPlayerImpulse"]
+[connection signal="timeout" from="PlayerControl/ImpulseCooldown" to="PlayerControl" method="OnImpulseCouldownTimeout"]
 [connection signal="timeout" from="PlayerControl/ImpulseCooldown" to="PlayerControl" method="OnImpluseCouldownTimeout"]
-[connection signal="IsInvincibleChanged" from="LifeControl" to="StyleControl" method="OnInvincibleChanged"]
+[connection signal="IsInvincibleChanged" from="LifeControl" to="StyleManager" method="OnInvincibleChanged"]
 [connection signal="Killed" from="LifeControl" to="." method="Hit"]
-[connection signal="ShieldChanged" from="LifeControl" to="StyleControl" method="OnShieldChanged"]
+[connection signal="ShieldChanged" from="LifeControl" to="StyleManager" method="OnShieldChanged"]
 [connection signal="timeout" from="LifeControl/HitCooldown" to="LifeControl" method="OnHitCooldownTimeout"]

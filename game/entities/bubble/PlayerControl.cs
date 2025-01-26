@@ -15,8 +15,24 @@ public partial class PlayerControl : Node
 
     [Signal]
     public delegate void PlayerImpulseEventHandler(Vector2 direction, float strength);
+    
+    [Signal]
+    public delegate void CanImpulseChangedEventHandler(bool state);
 
     public Timer CooldownTimer { get; private set; }
+
+    public bool CanImpulse
+    {
+        get
+        {
+            return canImpulse;
+        }
+        set
+        {
+            canImpulse = value;
+            EmitSignal(SignalName.CanImpulseChanged, value);
+        }
+    }
 
     public override void _Ready()
     {
@@ -43,16 +59,16 @@ public partial class PlayerControl : Node
         {
             float strength = impulseDuration > ThreshTime ? 1.0f : impulseDuration / ThreshTime;
             impulseDuration = 0.0f;
-            canImpulse = false;
+            CanImpulse = false;
             CooldownTimer.Start();
-
+            
             EmitSignal(SignalName.PlayerImpulse, direction, strength);
         }
     }
 
-    public void OnImpluseCouldownTimeout()
+    public void OnImpulseCouldownTimeout()
     {
-        canImpulse = true;
+        CanImpulse = true;
     }
 
     private float impulseDuration = 0.0f;

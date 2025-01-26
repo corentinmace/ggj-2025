@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scenes/VelocityDebug.cs" id="1_q6wnb"]
 
 [node name="DebugUI" type="Control"]
+z_index = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,12 +13,15 @@ grow_vertical = 2
 script = ExtResource("1_q6wnb")
 
 [node name="VelocityValue" type="Label" parent="."]
+layout_mode = 0
 offset_left = 74.0
 offset_right = 189.0
 offset_bottom = 23.0
 scale = Vector2(1.08, 1)
 
 [node name="VelocityLabel" type="Label" parent="."]
+z_index = 1
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Velocity : "

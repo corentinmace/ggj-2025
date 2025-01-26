@@ -10,12 +10,10 @@ public partial class Bubble : CharacterBody2D
     public delegate void VelocityChangedEventHandler(Vector2 velocity);
 
     public Vector2 Acceleration { get; set; }
+
     public new Vector2 Velocity
     {
-        get
-        {
-            return base.Velocity;
-        }
+        get { return base.Velocity; }
 
         set
         {
