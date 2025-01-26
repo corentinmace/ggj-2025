@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjekwqu5hv4w1"]
+
+[ext_resource type="PackedScene" uid="uid://bcicu5llabxa1" path="res://entities/collectibles/shield/shield_item.tscn" id="1_hijew"]
+[ext_resource type="PackedScene" uid="uid://wqm2tpd5of4c" path="res://entities/bubble/bubble.tscn" id="2_vrgqm"]
+[ext_resource type="Script" path="res://utils/SignalDebug.cs" id="3_o8c5m"]
+
+[node name="TestShield" type="Node2D"]
+
+[node name="ShieldItem" parent="." instance=ExtResource("1_hijew")]
+position = Vector2(546, 189)
+
+[node name="Bubble" parent="." instance=ExtResource("2_vrgqm")]
+position = Vector2(292, 193)
+
+[node name="SignalDebug" type="Node" parent="."]
+script = ExtResource("3_o8c5m")
+
+[connection signal="Collected" from="ShieldItem" to="SignalDebug" method="PrintMessage"]
