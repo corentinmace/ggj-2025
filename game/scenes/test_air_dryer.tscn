@@ -43,4 +43,3 @@ shape = SubResource("WorldBoundaryShape2D_cb5vk")
 
 [node name="Bubble" parent="." instance=ExtResource("2_4kxjr")]
 position = Vector2(441, 489)
-collision_layer = 2

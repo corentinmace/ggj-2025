@@ -17,7 +17,7 @@ public partial class HairDryer : StaticBody2D
     {
         if (bubbleRef != null)
         {
-            bubbleRef.Velocity += Ray.GlobalTransform.Y * Strength;
+            bubbleRef.Acceleration += Ray.GlobalTransform.Y * Strength;
         }
     }
 

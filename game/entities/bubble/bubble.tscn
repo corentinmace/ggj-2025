@@ -192,6 +192,7 @@ _data = {
 graph_offset = Vector2(-166.678, 36.7107)
 
 [node name="Bubble" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_5e0xq")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
@@ -206,6 +207,8 @@ shape = SubResource("CircleShape2D_r6mdj")
 [node name="PlayerControl" type="Node" parent="."]
 script = ExtResource("18_a8an0")
 
+[node name="ImpulseCooldown" type="Timer" parent="PlayerControl"]
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_iwoso")
@@ -216,3 +219,4 @@ autoplay = "idle"
 tree_root = SubResource("AnimationNodeBlendTree_377ew")
 
 [connection signal="PlayerImpulse" from="PlayerControl" to="." method="OnPlayerImpulse"]
+[connection signal="timeout" from="PlayerControl/ImpulseCooldown" to="PlayerControl" method="OnImpluseCouldownTimeout"]

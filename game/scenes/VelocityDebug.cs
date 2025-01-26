@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class VelocityDebug : Control
 {
@@ -19,6 +18,6 @@ public partial class VelocityDebug : Control
 
     public void OnVelocityChanged(Vector2 velocity)
     {
-        value.Text = velocity.ToString();
+        value.Text = $"({Mathf.Snapped(velocity.X, 0.01)}, {Mathf.Snapped(velocity.Y, 0.01)})";
     }
 }

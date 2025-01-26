@@ -1,19 +1,33 @@
 using Godot;
-using System;
 using GGJ2025.entities;
 
 public partial class Bubble : CharacterBody2D, IHittable
 {
     [Export] private float Speed { get; set; } = 300.0f;
-    private AnimatedSprite2D Sprite;
-    private AnimationPlayer Animator;
+    [Export] public float Friction { get; set; } = 100.0f;
+    [Export] public float VelocityThresh { get; private set; } = 0.1f;
 
     [Signal]
     public delegate void VelocityChangedEventHandler(Vector2 velocity);
 
+    public Vector2 Acceleration { get; set; }
+    public new Vector2 Velocity
+    {
+        get
+        {
+            return base.Velocity;
+        }
+
+        set
+        {
+            base.Velocity = value;
+            EmitSignal(SignalName.VelocityChanged, base.Velocity);
+        }
+    }
+
     public override void _Ready()
     {
-        foreach (var child in GetChildren())
+        foreach (Node child in GetChildren())
         {
             if (child is AnimatedSprite2D animatedSprite)
             {
@@ -28,15 +42,20 @@ public partial class Bubble : CharacterBody2D, IHittable
 
     public override void _Process(double delta)
     {
-        if (Velocity.Length() > Speed)
-        {
-            Velocity = Velocity.Normalized() * Speed;
-        }
-
         KinematicCollision2D moveAndCollide = MoveAndCollide(Velocity * (float)delta);
         if (moveAndCollide == null)
             return;
         Velocity = Velocity.Bounce(moveAndCollide.GetNormal());
+    }
+
+    public override void _PhysicsProcess(double delta)
+    {
+        Vector2 newVelocity = Velocity + Acceleration * (float)delta;
+        newVelocity = newVelocity.Length() < VelocityThresh ? Vector2.Zero : newVelocity.LimitLength(Speed);
+        Velocity = newVelocity;
+
+        Vector2 dir = Velocity.Normalized();
+        Acceleration = -dir * Friction;
     }
 
     public void OnPlayerImpulse(Vector2 direction, float strength)
@@ -44,7 +63,6 @@ public partial class Bubble : CharacterBody2D, IHittable
         Vector2 impulse = direction * strength;
 
         Velocity += impulse * Speed;
-        EmitSignal(SignalName.VelocityChanged, Velocity);
     }
 
     public void Hit()
@@ -57,4 +75,7 @@ public partial class Bubble : CharacterBody2D, IHittable
     {
         QueueFree();
     }
+
+    private AnimatedSprite2D Sprite;
+    private AnimationPlayer Animator;
 }
