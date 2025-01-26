@@ -254,6 +254,7 @@ radius = 11.0
 height = 36.0
 
 [node name="Droplet" type="CharacterBody2D"]
+collision_mask = 2
 script = ExtResource("1_vsp6e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -276,6 +277,7 @@ tree_root = SubResource("AnimationNodeBlendTree_n66kl")
 anim_player = NodePath("../AnimationPlayer")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CapsuleShape2D_u40dr")

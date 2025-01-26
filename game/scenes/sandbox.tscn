@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://b1pvu1mfhsnx0"]
+[gd_scene load_steps=11 format=3 uid="uid://b1pvu1mfhsnx0"]
 
 [ext_resource type="PackedScene" uid="uid://wqm2tpd5of4c" path="res://entities/bubble/bubble.tscn" id="1_2wgdu"]
 [ext_resource type="PackedScene" uid="uid://yxamipqanelm" path="res://scenes/debug_ui.tscn" id="2_v3k20"]
 [ext_resource type="PackedScene" uid="uid://c2e00tb5hahlg" path="res://entities/spike/spike.tscn" id="3_t72h2"]
 [ext_resource type="PackedScene" uid="uid://45ys6bjlrl3m" path="res://entities/tap/tap.tscn" id="5_6p70w"]
 [ext_resource type="PackedScene" uid="uid://d2odldbi18e8j" path="res://entities/droplet/droplet.tscn" id="5_iygd5"]
+[ext_resource type="PackedScene" uid="uid://nvuu5debute4" path="res://entities/hair_dryer/hair_dryer.tscn" id="6_xbph5"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_82xop"]
 normal = Vector2(1, 0)
@@ -22,7 +23,8 @@ distance = -648.0
 [node name="Sandbox" type="Node2D"]
 
 [node name="Bubble" parent="." instance=ExtResource("1_2wgdu")]
-position = Vector2(551, 320)
+position = Vector2(46, 305)
+collision_layer = 2
 
 [node name="DebugUI" parent="." instance=ExtResource("2_v3k20")]
 
@@ -65,5 +67,14 @@ position = Vector2(954, 15)
 SpawnInterval = 1.0
 SpawnDelay = 3.5
 DropletScene = ExtResource("5_iygd5")
+
+[node name="HairDryer" parent="." instance=ExtResource("6_xbph5")]
+position = Vector2(-13, 613)
+rotation = -2.06123
+scale = Vector2(-1, 1)
+
+[node name="HairDryer2" parent="." instance=ExtResource("6_xbph5")]
+position = Vector2(1036, 671)
+rotation = -3.14159
 
 [connection signal="VelocityChanged" from="Bubble" to="DebugUI" method="OnVelocityChanged"]
