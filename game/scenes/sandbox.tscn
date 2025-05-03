@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b1pvu1mfhsnx0"]
+[gd_scene load_steps=12 format=3 uid="uid://b1pvu1mfhsnx0"]
 
 [ext_resource type="PackedScene" uid="uid://wqm2tpd5of4c" path="res://entities/bubble/bubble.tscn" id="1_2wgdu"]
 [ext_resource type="PackedScene" uid="uid://yxamipqanelm" path="res://scenes/debug_ui.tscn" id="2_v3k20"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://nvuu5debute4" path="res://entities/hair_dryer/hair_dryer.tscn" id="4_8my1g"]
 [ext_resource type="PackedScene" uid="uid://45ys6bjlrl3m" path="res://entities/tap/tap.tscn" id="5_6p70w"]
 [ext_resource type="PackedScene" uid="uid://bcicu5llabxa1" path="res://entities/collectibles/shield/shield_item.tscn" id="6_0frys"]
+[ext_resource type="Script" path="res://entities/game_manager/SpawnPoint.cs" id="7_g3df4"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_82xop"]
 normal = Vector2(1, 0)
@@ -78,5 +79,9 @@ position = Vector2(254, 299)
 
 [node name="ShieldItem2" parent="." instance=ExtResource("6_0frys")]
 position = Vector2(804, 301)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(551, 320)
+script = ExtResource("7_g3df4")
 
 [connection signal="VelocityChanged" from="Bubble" to="DebugUI" method="OnVelocityChanged"]

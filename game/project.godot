@@ -16,6 +16,10 @@ run/main_scene="res://scenes/sandbox.tscn"
 config/features=PackedStringArray("4.3", "C#")
 config/icon="res://icon.png"
 
+[autoload]
+
+GameManager="*res://entities/game_manager/GameManager.cs"
+
 [dotnet]
 
 project/assembly_name="GGJ2025"

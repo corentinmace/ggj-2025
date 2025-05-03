@@ -8,6 +8,10 @@ public partial class Bubble : CharacterBody2D
 
     [Signal]
     public delegate void VelocityChangedEventHandler(Vector2 velocity);
+    [Signal]
+    public delegate void SpawnedEventHandler();
+    [Signal]
+    public delegate void KilledEventHandler();
 
     public Vector2 Acceleration { get; set; }
 
@@ -22,19 +26,15 @@ public partial class Bubble : CharacterBody2D
         }
     }
 
+    public Bubble()
+    {
+        ChildEnteredTree += CollectChild;
+    }
+
     public override void _Ready()
     {
-        foreach (Node child in GetChildren())
-        {
-            if (child is AnimatedSprite2D animatedSprite)
-            {
-                Sprite = animatedSprite;
-            }
-            else if (child is AnimationPlayer animationPlayer)
-            {
-                Animator = animationPlayer;
-            }
-        }
+        GameManager.Instance.RegisterBubble(this);
+        Spawn(Position);
     }
 
     public override void _Process(double delta)
@@ -68,9 +68,28 @@ public partial class Bubble : CharacterBody2D
         Animator.Play("pop");
     }
 
+    public void Spawn(Vector2 newPos)
+    {
+        Translate(newPos - GlobalPosition);
+        Animator.Play("spawn");
+    }
+
     public void OnPopAnimationFinished()
     {
-        QueueFree();
+        EmitSignal(SignalName.Killed);
+    }
+
+    public void OnSpawnAnimationFinished()
+    {
+        EmitSignal(SignalName.Spawned);
+    }
+
+    private void CollectChild(Node child)
+    {
+        if (child is AnimatedSprite2D animatedSprite)
+            Sprite = animatedSprite;
+        else if (child is AnimationPlayer animationPlayer)
+            Animator = animationPlayer;
     }
 
     private AnimatedSprite2D Sprite;
