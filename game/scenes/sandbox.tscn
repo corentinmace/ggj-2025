@@ -25,6 +25,7 @@ distance = -648.0
 [node name="Sandbox" type="Node2D"]
 
 [node name="DebugUI" parent="." instance=ExtResource("2_v3k20")]
+metadata/_edit_use_anchors_ = true
 
 [node name="WorldBoundaries" type="StaticBody2D" parent="."]
 

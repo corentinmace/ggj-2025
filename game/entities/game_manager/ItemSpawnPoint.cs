@@ -1,5 +1,6 @@
 using Godot;
 
+[Tool]
 public partial class ItemSpawnPoint : SpawnPoint
 {
     public override void Spawn()
