@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://birf2ojp0iood"]
+
+[ext_resource type="Script" path="res://entities/camera/PlayerTracker.cs" id="1_2ncb3"]
+
+[node name="Camera" type="Node2D"]
+position = Vector2(538, 331)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = 0
+limit_right = 2000
+limit_bottom = 650
+limit_smoothed = true
+
+[node name="PlayerTracker" type="Node" parent="."]
+script = ExtResource("1_2ncb3")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://yxamipqanelm"]
 
-[ext_resource type="Script" path="res://scenes/VelocityDebug.cs" id="1_q6wnb"]
+[ext_resource type="Script" path="res://utils/VelocityDebug.cs" id="1_q6wnb"]
 
 [node name="DebugUI" type="Control"]
 z_index = 1

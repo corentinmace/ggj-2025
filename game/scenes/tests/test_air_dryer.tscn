@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://eebb37ttf7fu"]
 
-[ext_resource type="PackedScene" uid="uid://nvuu5debute4" path="res://entities/hair_dryer/hair_dryer.tscn" id="1_8qhxj"]
-[ext_resource type="PackedScene" uid="uid://wqm2tpd5of4c" path="res://entities/bubble/bubble.tscn" id="2_4kxjr"]
+[ext_resource type="PackedScene" uid="uid://nvuu5debute4" path="res://entities/hair_dryer/hair_dryer.tscn" id="1_hfjm7"]
+[ext_resource type="PackedScene" uid="uid://wqm2tpd5of4c" path="res://entities/bubble/bubble.tscn" id="2_2q7wr"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ni6p2"]
 normal = Vector2(0, 1)
@@ -16,11 +16,11 @@ normal = Vector2(1, 0)
 
 [node name="TestAirDryer" type="Node2D"]
 
-[node name="HairDryer" parent="." instance=ExtResource("1_8qhxj")]
+[node name="HairDryer" parent="." instance=ExtResource("1_hfjm7")]
 position = Vector2(458, 647)
 rotation = 3.14159
 
-[node name="HairDryer2" parent="." instance=ExtResource("1_8qhxj")]
+[node name="HairDryer2" parent="." instance=ExtResource("1_hfjm7")]
 position = Vector2(1151, 242)
 rotation = 1.5708
 
@@ -41,5 +41,5 @@ shape = SubResource("WorldBoundaryShape2D_uyi2r")
 [node name="Left" type="CollisionShape2D" parent="WorldBounds"]
 shape = SubResource("WorldBoundaryShape2D_cb5vk")
 
-[node name="Bubble" parent="." instance=ExtResource("2_4kxjr")]
+[node name="Bubble" parent="." instance=ExtResource("2_2q7wr")]
 position = Vector2(441, 489)
