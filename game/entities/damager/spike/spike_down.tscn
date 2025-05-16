@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ceiyydkbl7qrm"]
+
+[ext_resource type="PackedScene" uid="uid://c2e00tb5hahlg" path="res://entities/damager/spike/spike.tscn" id="1_41pyi"]
+
+[node name="SpikeDown" instance=ExtResource("1_41pyi")]
+rotation = -1.5708

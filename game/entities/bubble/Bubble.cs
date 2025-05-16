@@ -81,6 +81,7 @@ public partial class Bubble : CharacterBody2D
 
 	public void OnSpawnAnimationFinished()
 	{
+		Animator.Play("idle");
 		EmitSignal(SignalName.Spawned);
 	}
 

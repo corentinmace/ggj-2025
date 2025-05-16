@@ -1,13 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://b1pvu1mfhsnx0"]
+[gd_scene load_steps=11 format=3 uid="uid://b1pvu1mfhsnx0"]
 
 [ext_resource type="PackedScene" uid="uid://yxamipqanelm" path="res://utils/debug_ui.tscn" id="1_qed1e"]
 [ext_resource type="PackedScene" uid="uid://c2e00tb5hahlg" path="res://entities/damager/spike/spike.tscn" id="2_oehhl"]
 [ext_resource type="PackedScene" uid="uid://nvuu5debute4" path="res://entities/hair_dryer/hair_dryer.tscn" id="3_trekm"]
 [ext_resource type="PackedScene" uid="uid://45ys6bjlrl3m" path="res://entities/tap/tap.tscn" id="4_x7vgp"]
-[ext_resource type="Script" path="res://entities/game_manager/BubbleSpawnPoint.cs" id="5_bcmlf"]
-[ext_resource type="PackedScene" uid="uid://wqm2tpd5of4c" path="res://entities/bubble/bubble.tscn" id="6_g380v"]
-[ext_resource type="Script" path="res://entities/game_manager/ItemSpawnPoint.cs" id="7_jo5g3"]
-[ext_resource type="PackedScene" uid="uid://bcicu5llabxa1" path="res://entities/collectibles/shield/shield_item.tscn" id="8_47wow"]
+[ext_resource type="PackedScene" uid="uid://bk7633na8kxi" path="res://entities/bubble/bubble_spawner.tscn" id="5_qmhp3"]
+[ext_resource type="PackedScene" uid="uid://cvso2i3hh3li8" path="res://entities/collectibles/shield/shield_spawner_1.tscn" id="6_7ke0l"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_82xop"]
 normal = Vector2(1, 0)
@@ -72,17 +70,9 @@ position = Vector2(954, 15)
 SpawnInterval = 1.0
 SpawnDelay = 3.5
 
-[node name="BubbleSpawner" type="Marker2D" parent="."]
-position = Vector2(551, 320)
-script = ExtResource("5_bcmlf")
-SpawedEntity = ExtResource("6_g380v")
+[node name="BubbleSpawner" parent="." instance=ExtResource("5_qmhp3")]
 
-[node name="ShieldSpawner1" type="Marker2D" parent="."]
-position = Vector2(254, 299)
-script = ExtResource("7_jo5g3")
-SpawedEntity = ExtResource("8_47wow")
+[node name="ShieldSpawner1" parent="." instance=ExtResource("6_7ke0l")]
 
-[node name="ShieldSpawner2" type="Marker2D" parent="."]
+[node name="ShieldSpawner3" parent="." instance=ExtResource("6_7ke0l")]
 position = Vector2(804, 301)
-script = ExtResource("7_jo5g3")
-SpawedEntity = ExtResource("8_47wow")

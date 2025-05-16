@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bk7633na8kxi"]
+
+[ext_resource type="Script" path="res://entities/game_manager/BubbleSpawnPoint.cs" id="1_rmfj0"]
+[ext_resource type="PackedScene" uid="uid://wqm2tpd5of4c" path="res://entities/bubble/bubble.tscn" id="2_tyxt2"]
+
+[node name="BubbleSpawner" type="Marker2D"]
+position = Vector2(551, 320)
+script = ExtResource("1_rmfj0")
+SpawedEntity = ExtResource("2_tyxt2")

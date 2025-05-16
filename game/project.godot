@@ -10,9 +10,10 @@ config_version=5
 
 [application]
 
-config/name="GGJ2025"
-config/description="Enter an interesting project description here!"
-run/main_scene="res://scenes/tests/sandbox.tscn"
+config/name="Escape the bathroom"
+config/description="A game you control a bubble and you need to escape your bathroom"
+config/version="1.0.0"
+run/main_scene="res://scenes/level_1.tscn"
 config/features=PackedStringArray("4.3", "C#")
 config/icon="res://icon.png"
 

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvso2i3hh3li8"]
+
+[ext_resource type="Script" path="res://entities/game_manager/ItemSpawnPoint.cs" id="1_213gw"]
+[ext_resource type="PackedScene" uid="uid://bcicu5llabxa1" path="res://entities/collectibles/shield/shield_item.tscn" id="2_rau2c"]
+
+[node name="ShieldSpawner1" type="Marker2D"]
+position = Vector2(254, 299)
+script = ExtResource("1_213gw")
+SpawedEntity = ExtResource("2_rau2c")
