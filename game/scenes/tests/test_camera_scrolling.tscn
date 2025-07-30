@@ -1,0 +1,77 @@
+[gd_scene load_steps=9 format=3 uid="uid://nv6qj1syn2wu"]
+
+[ext_resource type="PackedScene" uid="uid://wqm2tpd5of4c" path="res://entities/bubble/bubble.tscn" id="1_2tlo5"]
+[ext_resource type="Script" path="res://entities/game_manager/BubbleSpawnPoint.cs" id="2_g7p5d"]
+[ext_resource type="PackedScene" uid="uid://c2e00tb5hahlg" path="res://entities/damager/spike/spike.tscn" id="2_s1gi2"]
+[ext_resource type="PackedScene" uid="uid://birf2ojp0iood" path="res://entities/camera/camera.tscn" id="4_xghox"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fpdkn"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xx7j7"]
+normal = Vector2(-1, 0)
+distance = -2000.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bhkg3"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ghdlt"]
+distance = -648.0
+
+[node name="TestCameraScrolling" type="Node2D"]
+
+[node name="WorldBoundaries" type="StaticBody2D" parent="."]
+collision_layer = 33
+collision_mask = 0
+
+[node name="Left" type="CollisionShape2D" parent="WorldBoundaries"]
+shape = SubResource("WorldBoundaryShape2D_fpdkn")
+
+[node name="Right" type="CollisionShape2D" parent="WorldBoundaries"]
+shape = SubResource("WorldBoundaryShape2D_xx7j7")
+
+[node name="Top" type="CollisionShape2D" parent="WorldBoundaries"]
+shape = SubResource("WorldBoundaryShape2D_bhkg3")
+
+[node name="Bottom" type="CollisionShape2D" parent="WorldBoundaries"]
+shape = SubResource("WorldBoundaryShape2D_ghdlt")
+
+[node name="Spikes" type="Node" parent="."]
+
+[node name="Spike" parent="Spikes" instance=ExtResource("2_s1gi2")]
+position = Vector2(263, 17)
+rotation = -1.5708
+
+[node name="Spike2" parent="Spikes" instance=ExtResource("2_s1gi2")]
+position = Vector2(511, 17)
+rotation = -1.5708
+
+[node name="Spike3" parent="Spikes" instance=ExtResource("2_s1gi2")]
+position = Vector2(991, 17)
+rotation = -1.5708
+
+[node name="Spike7" parent="Spikes" instance=ExtResource("2_s1gi2")]
+position = Vector2(700, 632)
+rotation = 1.5708
+
+[node name="Spike8" parent="Spikes" instance=ExtResource("2_s1gi2")]
+position = Vector2(1384, 630)
+rotation = 1.5708
+
+[node name="Spike4" parent="Spikes" instance=ExtResource("2_s1gi2")]
+position = Vector2(1597, 17)
+rotation = -1.5708
+
+[node name="Spike5" parent="Spikes" instance=ExtResource("2_s1gi2")]
+position = Vector2(17, 199)
+rotation = -3.14159
+
+[node name="Spike6" parent="Spikes" instance=ExtResource("2_s1gi2")]
+position = Vector2(1987, 457)
+
+[node name="BubbleSpawner" type="Marker2D" parent="."]
+position = Vector2(538, 332)
+script = ExtResource("2_g7p5d")
+SpawedEntity = ExtResource("1_2tlo5")
+
+[node name="Camera" parent="." instance=ExtResource("4_xghox")]

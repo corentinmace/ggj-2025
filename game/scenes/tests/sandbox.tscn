@@ -1,0 +1,88 @@
+[gd_scene load_steps=13 format=3 uid="uid://b1pvu1mfhsnx0"]
+
+[ext_resource type="PackedScene" uid="uid://yxamipqanelm" path="res://utils/debug_ui.tscn" id="1_qed1e"]
+[ext_resource type="PackedScene" uid="uid://c2e00tb5hahlg" path="res://entities/damager/spike/spike.tscn" id="2_oehhl"]
+[ext_resource type="PackedScene" uid="uid://nvuu5debute4" path="res://entities/hair_dryer/hair_dryer.tscn" id="3_trekm"]
+[ext_resource type="PackedScene" uid="uid://45ys6bjlrl3m" path="res://entities/tap/tap.tscn" id="4_x7vgp"]
+[ext_resource type="Script" path="res://entities/game_manager/BubbleSpawnPoint.cs" id="5_bcmlf"]
+[ext_resource type="PackedScene" uid="uid://wqm2tpd5of4c" path="res://entities/bubble/bubble.tscn" id="6_g380v"]
+[ext_resource type="Script" path="res://entities/game_manager/ItemSpawnPoint.cs" id="7_jo5g3"]
+[ext_resource type="PackedScene" uid="uid://bcicu5llabxa1" path="res://entities/collectibles/shield/shield_item.tscn" id="8_47wow"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_82xop"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_h4r7o"]
+normal = Vector2(-1, 0)
+distance = -1152.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_g7beh"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ejxcj"]
+distance = -648.0
+
+[node name="Sandbox" type="Node2D"]
+
+[node name="DebugUI" parent="." instance=ExtResource("1_qed1e")]
+metadata/_edit_use_anchors_ = true
+
+[node name="WorldBoundaries" type="StaticBody2D" parent="."]
+
+[node name="Left" type="CollisionShape2D" parent="WorldBoundaries"]
+shape = SubResource("WorldBoundaryShape2D_82xop")
+
+[node name="Right" type="CollisionShape2D" parent="WorldBoundaries"]
+shape = SubResource("WorldBoundaryShape2D_h4r7o")
+
+[node name="Top" type="CollisionShape2D" parent="WorldBoundaries"]
+shape = SubResource("WorldBoundaryShape2D_g7beh")
+
+[node name="Bottom" type="CollisionShape2D" parent="WorldBoundaries"]
+shape = SubResource("WorldBoundaryShape2D_ejxcj")
+
+[node name="Spike" parent="." instance=ExtResource("2_oehhl")]
+position = Vector2(1135, 539)
+
+[node name="HairDryer" parent="." instance=ExtResource("3_trekm")]
+position = Vector2(2, 522)
+rotation = 1.5708
+scale = Vector2(1, -1)
+
+[node name="HairDryer2" parent="." instance=ExtResource("3_trekm")]
+position = Vector2(1150, 101)
+rotation = 1.5708
+
+[node name="Tap" parent="." instance=ExtResource("4_x7vgp")]
+position = Vector2(239, 15)
+SpawnDelay = 0.0
+
+[node name="Tap1" parent="." instance=ExtResource("4_x7vgp")]
+position = Vector2(479, 15)
+SpawnInterval = 2.5
+SpawnDelay = 1.5
+
+[node name="Tap3" parent="." instance=ExtResource("4_x7vgp")]
+position = Vector2(717, 15)
+SpawnInterval = 1.5
+SpawnDelay = 2.0
+
+[node name="Tap4" parent="." instance=ExtResource("4_x7vgp")]
+position = Vector2(954, 15)
+SpawnInterval = 1.0
+SpawnDelay = 3.5
+
+[node name="BubbleSpawner" type="Marker2D" parent="."]
+position = Vector2(551, 320)
+script = ExtResource("5_bcmlf")
+SpawedEntity = ExtResource("6_g380v")
+
+[node name="ShieldSpawner1" type="Marker2D" parent="."]
+position = Vector2(254, 299)
+script = ExtResource("7_jo5g3")
+SpawedEntity = ExtResource("8_47wow")
+
+[node name="ShieldSpawner2" type="Marker2D" parent="."]
+position = Vector2(804, 301)
+script = ExtResource("7_jo5g3")
+SpawedEntity = ExtResource("8_47wow")

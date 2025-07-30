@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://bjekwqu5hv4w1"]
 
-[ext_resource type="PackedScene" uid="uid://bcicu5llabxa1" path="res://entities/collectibles/shield/shield_item.tscn" id="1_hijew"]
-[ext_resource type="PackedScene" uid="uid://wqm2tpd5of4c" path="res://entities/bubble/bubble.tscn" id="2_vrgqm"]
-[ext_resource type="PackedScene" uid="uid://c2e00tb5hahlg" path="res://entities/damager/spike/spike.tscn" id="4_evaq0"]
-[ext_resource type="PackedScene" uid="uid://45ys6bjlrl3m" path="res://entities/tap/tap.tscn" id="5_10wph"]
+[ext_resource type="PackedScene" uid="uid://bcicu5llabxa1" path="res://entities/collectibles/shield/shield_item.tscn" id="1_3leto"]
+[ext_resource type="PackedScene" uid="uid://wqm2tpd5of4c" path="res://entities/bubble/bubble.tscn" id="2_syj1a"]
+[ext_resource type="PackedScene" uid="uid://c2e00tb5hahlg" path="res://entities/damager/spike/spike.tscn" id="3_62wdh"]
+[ext_resource type="PackedScene" uid="uid://45ys6bjlrl3m" path="res://entities/tap/tap.tscn" id="4_ml15p"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gvhs2"]
 normal = Vector2(0, 1)
@@ -18,10 +18,10 @@ normal = Vector2(1, 0)
 
 [node name="TestShield" type="Node2D"]
 
-[node name="ShieldItem" parent="." instance=ExtResource("1_hijew")]
+[node name="ShieldItem" parent="." instance=ExtResource("1_3leto")]
 position = Vector2(546, 189)
 
-[node name="Bubble" parent="." instance=ExtResource("2_vrgqm")]
+[node name="Bubble" parent="." instance=ExtResource("2_syj1a")]
 position = Vector2(292, 193)
 
 [node name="WorldBounds" type="StaticBody2D" parent="."]
@@ -41,10 +41,10 @@ shape = SubResource("WorldBoundaryShape2D_8lphn")
 [node name="Left" type="CollisionShape2D" parent="WorldBounds"]
 shape = SubResource("WorldBoundaryShape2D_5duq5")
 
-[node name="Spike" parent="." instance=ExtResource("4_evaq0")]
+[node name="Spike" parent="." instance=ExtResource("3_62wdh")]
 position = Vector2(1136, 184)
 
-[node name="Tap" parent="." instance=ExtResource("5_10wph")]
+[node name="Tap" parent="." instance=ExtResource("4_ml15p")]
 position = Vector2(109, 32)
 SpawnInterval = 1.0
 SpawnDelay = 0.0

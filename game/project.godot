@@ -12,9 +12,13 @@ config_version=5
 
 config/name="GGJ2025"
 config/description="Enter an interesting project description here!"
-run/main_scene="res://scenes/sandbox.tscn"
+run/main_scene="res://scenes/tests/sandbox.tscn"
 config/features=PackedStringArray("4.3", "C#")
 config/icon="res://icon.png"
+
+[autoload]
+
+GameManager="*res://entities/game_manager/GameManager.cs"
 
 [dotnet]
 
@@ -64,3 +68,5 @@ impulse={
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Collectible"
 2d_physics/layer_4="Damager"
+2d_physics/layer_5="Camera"
+2d_physics/layer_6="WorldBounds"
